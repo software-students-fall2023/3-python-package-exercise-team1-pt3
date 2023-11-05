@@ -128,6 +128,45 @@ class Weather:
             'dataframe': hourly_dataframe
         }
     
+    def get_rain_probability(self, location_string):
+        # Geocode the location
+        location = self.geolocator.geocode(location_string)
+        if location is None:
+            raise ValueError("Could not geocode the location.")
+
+        # Prepare request parameters
+        params = {
+            "latitude": location.latitude,
+            "longitude": location.longitude,
+            "hourly": "precipitation_probability"
+        }
+
+        # Make the API call
+        responses = self.client.weather_api(self.url, params=params)
+
+        # Assuming the response is a single object and not a list
+        response = responses[0]
+
+        # Process hourly data
+        hourly = response.Hourly()
+        hourly_precipitation = hourly.Variables(0).ValuesAsNumpy()
+
+        hourly_data = {
+            "date": pd.date_range(
+                start=pd.to_datetime(hourly.Time(), unit="s"),
+                end=pd.to_datetime(hourly.TimeEnd(), unit="s"),
+                freq=pd.Timedelta(seconds=hourly.Interval()),
+                inclusive="left"
+            ),
+            "values": hourly_precipitation
+        }
+
+        hourly_dataframe = pd.DataFrame(data=hourly_data)
+
+        return {
+            'dataframe': hourly_dataframe
+        }
+    
 	
 	
 
