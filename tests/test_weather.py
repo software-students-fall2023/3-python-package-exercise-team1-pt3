@@ -17,3 +17,11 @@ class Tests:
         weather = Weather() 
         with pytest.raises(Exception) as e:
             weather.get_temperature("LTOJOGHJ")
+    
+    def test_get_apparent_temperature(self):
+        print("\nTesting get_apparent_temperature with London, UK")
+        weather = Weather()
+        temperature = weather.get_apparent_temperature("London, UK")
+        print("Temperature: ", temperature)
+        assert temperature['dataframe'].shape[0] > 0
+        assert temperature['dataframe'].shape[1] == 2
