@@ -10,6 +10,7 @@ pandas = "*"
 geopy = "*"
 openmeteo-requests = "*"
 retry-requests = "*"
+pytest = "*"
 
 [dev-packages]
 
