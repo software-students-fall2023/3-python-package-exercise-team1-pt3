@@ -11,7 +11,7 @@ class Weather:
         self.geolocator = Nominatim(user_agent="weather_package")
         self.url = "https://api.open-meteo.com/v1/forecast"
 
-    def get_weather_data(self, location_string):
+    def get_temperature(self, location_string):
         # Geocode the location
         location = self.geolocator.geocode(location_string)
         if location is None:
@@ -30,11 +30,6 @@ class Weather:
         # Assuming the response is a single object and not a list
         response = responses[0]
 
-        # Extract information from the response
-        coordinates = (response.Latitude(), response.Longitude())
-        elevation = response.Elevation()
-        timezone_info = (response.Timezone(), response.TimezoneAbbreviation(), response.UtcOffsetSeconds())
-
         # Process hourly data
         hourly = response.Hourly()
         hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
@@ -45,15 +40,94 @@ class Weather:
                 end=pd.to_datetime(hourly.TimeEnd(), unit="s"),
                 freq=pd.Timedelta(seconds=hourly.Interval()),
                 inclusive="left"
-            )
+            ),
+			"values": hourly_temperature_2m
         }
 
         hourly_dataframe = pd.DataFrame(data=hourly_data)
 
         return {
-            'coordinates': coordinates,
-            'elevation': elevation,
-            'timezone_info': timezone_info,
             'dataframe': hourly_dataframe
         }
+    
+    def get_apparent_temperature(self, location_string):
+        # Geocode the location
+        location = self.geolocator.geocode(location_string)
+        if location is None:
+            raise ValueError("Could not geocode the location.")
+
+        # Prepare request parameters
+        params = {
+            "latitude": location.latitude,
+            "longitude": location.longitude,
+            "hourly": "apparent_temperature"
+        }
+
+        # Make the API call
+        responses = self.client.weather_api(self.url, params=params)
+
+        # Assuming the response is a single object and not a list
+        response = responses[0]
+
+        # Process hourly data
+        hourly = response.Hourly()
+        hourly_apparent_temperature = hourly.Variables(0).ValuesAsNumpy()
+
+        hourly_data = {
+            "date": pd.date_range(
+                start=pd.to_datetime(hourly.Time(), unit="s"),
+                end=pd.to_datetime(hourly.TimeEnd(), unit="s"),
+                freq=pd.Timedelta(seconds=hourly.Interval()),
+                inclusive="left"
+            ),
+			"values": hourly_apparent_temperature
+        }
+
+        hourly_dataframe = pd.DataFrame(data=hourly_data)
+
+        return {
+            'dataframe': hourly_dataframe
+        }
+    
+    def get_relative_humidity(self, location_string):
+        # Geocode the location
+        location = self.geolocator.geocode(location_string)
+        if location is None:
+            raise ValueError("Could not geocode the location.")
+
+        # Prepare request parameters
+        params = {
+            "latitude": location.latitude,
+            "longitude": location.longitude,
+            "hourly": "relative_humidity_2m"
+        }
+
+        # Make the API call
+        responses = self.client.weather_api(self.url, params=params)
+
+        # Assuming the response is a single object and not a list
+        response = responses[0]
+
+        # Process hourly data
+        hourly = response.Hourly()
+        hourly_relative_humidity = hourly.Variables(0).ValuesAsNumpy()
+
+        hourly_data = {
+            "date": pd.date_range(
+                start=pd.to_datetime(hourly.Time(), unit="s"),
+                end=pd.to_datetime(hourly.TimeEnd(), unit="s"),
+                freq=pd.Timedelta(seconds=hourly.Interval()),
+                inclusive="left"
+            ),
+			"values": hourly_relative_humidity
+        }
+
+        hourly_dataframe = pd.DataFrame(data=hourly_data)
+
+        return {
+            'dataframe': hourly_dataframe
+        }
+    
+	
+	
 
