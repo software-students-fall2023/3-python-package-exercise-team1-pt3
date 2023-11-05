@@ -144,6 +144,12 @@ class Weather:
         # Make the API call
         responses = self.client.weather_api(self.url, params=params)
 
+        # Assuming the response is a single object and not a list
+        response = responses[0]
+
+        # Process hourly data
+        hourly = response.Hourly()
+        hourly_precipitation = hourly.Variables(0).ValuesAsNumpy()
 
     
 	
