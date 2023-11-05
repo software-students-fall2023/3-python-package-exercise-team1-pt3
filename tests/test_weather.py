@@ -39,3 +39,9 @@ class Tests:
         print("Humidity: ", humidity)
         assert humidity['dataframe'].shape[0] > 0
         assert humidity['dataframe'].shape[1] == 2
+
+    def test_get_relative_humidity_with_invalid_city(self):
+        print("\nTesting get_relative_humidity with invalid city")
+        weather = Weather() 
+        with pytest.raises(Exception) as e:
+            weather.get_relative_humidity("LTOJOGHJ")
