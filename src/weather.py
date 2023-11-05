@@ -134,6 +134,16 @@ class Weather:
         if location is None:
             raise ValueError("Could not geocode the location.")
 
+        # Prepare request parameters
+        params = {
+            "latitude": location.latitude,
+            "longitude": location.longitude,
+            "hourly": "precipitation_probability"
+        }
+
+        # Make the API call
+        responses = self.client.weather_api(self.url, params=params)
+
 
     
 	
