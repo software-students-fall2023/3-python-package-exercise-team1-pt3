@@ -32,3 +32,10 @@ class Tests:
         with pytest.raises(Exception) as e:
             weather.get_apparent_temperature("LTOJOGHJ")
     
+    def test_get_relative_humidity(self):
+        print("\nTesting get_relative_humidity with London, UK")
+        weather = Weather()
+        humidity = weather.get_relative_humidity("London, UK")
+        print("Humidity: ", humidity)
+        assert humidity['dataframe'].shape[0] > 0
+        assert humidity['dataframe'].shape[1] == 2
