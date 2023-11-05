@@ -128,6 +128,14 @@ class Weather:
             'dataframe': hourly_dataframe
         }
     
+    def get_rain_probability(self, location_string):
+        # Geocode the location
+        location = self.geolocator.geocode(location_string)
+        if location is None:
+            raise ValueError("Could not geocode the location.")
+
+
+    
 	
 	
 
