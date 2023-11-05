@@ -1,14 +1,14 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "weather"
 version = "0.0.1"
 authors = [
-  { name="Alessandro Landi", email="al6723@nyu.edu" },
+  { name="Alessandro Landi", email="al6723@nyu.edu" }, { name="Geoffrey Budiman", email="gkb8774@nyu.edu" }, { name="Nawaf Alabdullah", email="na2746@nyu.edu" }, { name="Shreyas Ujagar", email="su2043@nyu.edu" }, 
 ]
-description = "A small weather package"
+description = "A small weather package using Open-Meteo"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
