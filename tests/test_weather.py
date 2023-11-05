@@ -53,3 +53,9 @@ class Tests:
         print("Rain: ", rain)
         assert rain['dataframe'].shape[0] > 0
         assert rain['dataframe'].shape[1] == 2
+    
+    def test_get_rain_probability_with_invalid_city(self):
+        print("\nTesting get_rain_probability with invalid city")
+        weather = Weather() 
+        with pytest.raises(Exception) as e:
+            weather.get_rain_probability("LTOJOGHJ")
