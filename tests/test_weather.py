@@ -25,3 +25,10 @@ class Tests:
         print("Temperature: ", temperature)
         assert temperature['dataframe'].shape[0] > 0
         assert temperature['dataframe'].shape[1] == 2
+    
+    def test_get_apparent_temperature_with_invalid_city(self):
+        print("\nTesting get_apparent_temperature with invalid city")
+        weather = Weather() 
+        with pytest.raises(Exception) as e:
+            weather.get_apparent_temperature("LTOJOGHJ")
+    
