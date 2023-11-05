@@ -151,6 +151,21 @@ class Weather:
         hourly = response.Hourly()
         hourly_precipitation = hourly.Variables(0).ValuesAsNumpy()
 
+        hourly_data = {
+            "date": pd.date_range(
+                start=pd.to_datetime(hourly.Time(), unit="s"),
+                end=pd.to_datetime(hourly.TimeEnd(), unit="s"),
+                freq=pd.Timedelta(seconds=hourly.Interval()),
+                inclusive="left"
+            ),
+            "values": hourly_precipitation
+        }
+
+        hourly_dataframe = pd.DataFrame(data=hourly_data)
+
+        return {
+            'dataframe': hourly_dataframe
+        }
     
 	
 	
