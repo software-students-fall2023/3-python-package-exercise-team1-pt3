@@ -3,8 +3,8 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "weather"
-version = "0.0.1"
+name = "PyOMWeather"
+version = "0.0.2"
 authors = [
   { name="Alessandro Landi", email="al6723@nyu.edu" }, { name="Geoffrey Budiman", email="gkb8774@nyu.edu" }, { name="Nawaf Alabdullah", email="na2746@nyu.edu" }, { name="Shreyas Ujagar", email="su2043@nyu.edu" }, 
 ]
