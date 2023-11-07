@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyOMWeather"
-version = "0.0.2"
+version = "0.0.8"
 authors = [
   { name="Alessandro Landi", email="al6723@nyu.edu" }, { name="Geoffrey Budiman", email="gkb8774@nyu.edu" }, { name="Nawaf Alabdullah", email="na2746@nyu.edu" }, { name="Shreyas Ujagar", email="su2043@nyu.edu" }, 
 ]
@@ -15,6 +15,21 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests-cache",
+    "requests",
+    "pandas",
+    "geopy",
+    "openmeteo-requests",
+    "retry-requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "build",
+    "twine",
 ]
 
 [project.urls]
