@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyOMWeather"
-version = "0.0.8"
+version = "0.1.0"
 authors = [
   { name="Alessandro Landi", email="al6723@nyu.edu" }, { name="Geoffrey Budiman", email="gkb8774@nyu.edu" }, { name="Nawaf Alabdullah", email="na2746@nyu.edu" }, { name="Shreyas Ujagar", email="su2043@nyu.edu" }, 
 ]
