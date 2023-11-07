@@ -72,10 +72,19 @@ class Tests:
         with pytest.raises(Exception) as e:
             weather.get_relative_humidity("LTOJOGHJ")
     
+
     def test_get_rain_probability(self):
         print("\nTesting get_rain_probability with London, UK")
         weather = Weather()
         rain = weather.get_rain_probability("London, UK")
+        print("Rain: ", rain)
+        assert rain['dataframe'].shape[0] > 0
+        assert rain['dataframe'].shape[1] == 2
+    
+    def test_get_rain_probability_with_special_characters(self):
+        print("\nTesting get_rain_probability with Zürich, Switzerland")
+        weather = Weather()
+        rain = weather.get_rain_probability("Zürich, Switzerland")
         print("Rain: ", rain)
         assert rain['dataframe'].shape[0] > 0
         assert rain['dataframe'].shape[1] == 2
