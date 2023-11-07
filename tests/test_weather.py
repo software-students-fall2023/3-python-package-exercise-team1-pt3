@@ -12,6 +12,14 @@ class Tests:
         assert temperature['dataframe'].shape[0] > 0
         assert temperature['dataframe'].shape[1] == 2
 
+    def test_get_temperature_with_special_characters(self):
+        print("\nTesting get_temperature with Zürich, Switzerland")
+        weather = Weather()
+        temperature = weather.get_temperature("Zürich, Switzerland")
+        print("Temperature: ", temperature)
+        assert temperature['dataframe'].shape[0] > 0
+        assert temperature['dataframe'].shape[1] == 2
+
     def test_get_temperature_with_invalid_city(self):
         print("\nTesting get_temperature with invalid city")
         weather = Weather() 
