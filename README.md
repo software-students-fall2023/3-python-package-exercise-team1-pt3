@@ -2,7 +2,7 @@
 [![Build Status](https://github.com/software-students-fall2023/3-python-package-exercise-team1-pt3/actions/workflows/python-package.yml/badge.svg)](https://github.com/software-students-fall2023/3-python-package-exercise-team1-pt3/actions/workflows/python-package.yml)
 
 
-### A python module to fetch weather data from Open-Meteo (Open Source Weather API)
+### A python module to fetch weather data from ***[Open-Meteo](https://open-meteo.com/)*** (Open Source Weather API)
 
 ## Installation
 
@@ -34,7 +34,7 @@ from weather import Weather
 weather_instance = Weather()
 ```
 
-After doing this, you can use functions such as *get_temperature* and *get_rain_probability* for any location.
+After doing this, you can use functions such as **get_temperature** and **get_rain_probability** for any location.
 
 ```
 location = "Manhattan, New York"
@@ -47,4 +47,15 @@ print(f"Temperature data for {location}:")
 
 print(dataframe_temperature)
 ```
+
+See documentation [here]()
+## Contributors
+
+- [Nawaf](https://github.com/Verse1)
+
+- [Geoffrey](https://github.com/geoffreybudiman91)
+
+- [Alessandro](https://github.com/alessandrolandi)
+
+- [Shreyas](https://github.com/ShreyasUjagar)
 
