@@ -25,11 +25,20 @@ class Tests:
         weather = Weather() 
         with pytest.raises(Exception) as e:
             weather.get_temperature("LTOJOGHJ")
-    
+
+
     def test_get_apparent_temperature(self):
         print("\nTesting get_apparent_temperature with London, UK")
         weather = Weather()
         temperature = weather.get_apparent_temperature("London, UK")
+        print("Temperature: ", temperature)
+        assert temperature['dataframe'].shape[0] > 0
+        assert temperature['dataframe'].shape[1] == 2
+
+    def test_get_apparent_temperature_with_special_characters(self):
+        print("\nTesting get_apparent_temperature with Zürich, Switzerland")
+        weather = Weather()
+        temperature = weather.get_apparent_temperature("Zürich, Switzerland")
         print("Temperature: ", temperature)
         assert temperature['dataframe'].shape[0] > 0
         assert temperature['dataframe'].shape[1] == 2
