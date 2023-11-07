@@ -1,5 +1,5 @@
 import pytest
-from src.weather import Weather
+from src.PyOMWeather.weather import Weather
 import pandas as pd
 
 class Tests:
