@@ -100,6 +100,7 @@ Feel free to ***contribute*** to this project! Submit a ***Pull Request*** with 
 When working with our project, please **make sure** to install other modules mentioned in [requirements.txt](https://github.com/software-students-fall2023/3-python-package-exercise-team1-pt3/blob/shreyas/requirements.txt) using ***pip*** as well. You can start a ***[python virtual environment](https://packaging.python.org/en/latest/tutorials/managing-dependencies/)*** so that you can organise the various python packages that are being installed. 
 
 Again, please note that you can 'group install' all dependencies using 
+</br>
 
 ```
 pip install -r requirements.txt
