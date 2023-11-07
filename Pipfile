@@ -11,6 +11,8 @@ geopy = "*"
 openmeteo-requests = "*"
 retry-requests = "*"
 pytest = "*"
+build = "*"
+twine = "*"
 
 [dev-packages]
 
